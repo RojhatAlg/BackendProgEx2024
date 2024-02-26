@@ -5,6 +5,8 @@ import com.example.eksamenbcknd2024.model.Address;
 import com.example.eksamenbcknd2024.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +18,11 @@ public class AddressController {
     @Autowired
     private AddressRepository addressRepository;
 
-    @GetMapping
-    public List<Address> getAllAddresses() {
-        return addressRepository.findAll();
+
+    // add ?page=0&size=2 to the end to check if it works, page is 0 and offset is 2 in exmample.
+    @GetMapping("/all")
+    public Page<Address> getAllAddresses(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+        return addressRepository.findAll(PageRequest.of(page, size));
     }
 
     @GetMapping("/{id}")

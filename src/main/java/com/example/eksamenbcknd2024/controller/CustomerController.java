@@ -4,6 +4,10 @@ import com.amazonaws.services.iotjobsdataplane.model.ResourceNotFoundException;
 import com.example.eksamenbcknd2024.model.Customer;
 import com.example.eksamenbcknd2024.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +20,16 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping
+    @GetMapping()
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
+
+    @GetMapping("/all")
+    public Page<Customer> getAllCustomers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+        return customerRepository.findAll(PageRequest.of(page, size));
+    }
+
 
     @GetMapping("/{id}")
     public Optional<Customer> getCustomerById(@PathVariable Long id) {
@@ -47,4 +57,3 @@ public class CustomerController {
         customerRepository.deleteById(id);
     }
 }
-

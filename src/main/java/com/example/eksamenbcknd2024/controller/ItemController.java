@@ -5,6 +5,8 @@ import com.example.eksamenbcknd2024.model.Item;
 import com.example.eksamenbcknd2024.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +18,9 @@ public class ItemController {
     @Autowired
     private ItemRepository itemRepository;
 
-    @GetMapping
-    public List<Item> getAllItems() {
-        return itemRepository.findAll();
+    @GetMapping("/all")
+    public Page<Item> getAllItems(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+        return itemRepository.findAll(PageRequest.of(page, size));
     }
 
     @GetMapping("/{id}")

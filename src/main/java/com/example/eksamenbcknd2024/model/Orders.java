@@ -4,6 +4,7 @@ package com.example.eksamenbcknd2024.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "Orders")
@@ -17,6 +18,9 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name = "customerId")
     private Customer customer;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> items;
 
     public Orders() {
     }

@@ -5,6 +5,8 @@ import com.example.eksamenbcknd2024.model.Orders;
 import com.example.eksamenbcknd2024.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +18,9 @@ public class OrdersController {
     @Autowired
     private OrdersRepository ordersRepository;
 
-    @GetMapping
-    public List<Orders> getAllOrders() {
-        return ordersRepository.findAll();
+    @GetMapping("/all")
+    public Page<Orders> getAllOrders(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
+        return ordersRepository.findAll(PageRequest.of(page, size));
     }
 
     @GetMapping("/{id}")
