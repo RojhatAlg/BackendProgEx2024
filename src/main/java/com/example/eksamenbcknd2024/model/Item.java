@@ -15,7 +15,7 @@ public class Item {
 
     private BigDecimal price;
 
-    private String productId; // Assuming this is the product code
+    private String productId;
 
     public Item() {
     }

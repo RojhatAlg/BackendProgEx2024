@@ -4,7 +4,6 @@ public class OrderItemCreateRequest {
     private Long orderId;
     private Long itemId;
 
-    // Constructors
     public OrderItemCreateRequest() {
     }
 

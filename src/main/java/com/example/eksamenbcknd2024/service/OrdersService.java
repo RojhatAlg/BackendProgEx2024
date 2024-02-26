@@ -27,7 +27,6 @@ public class OrdersService {
     }
 
     public Orders saveOrder(Orders order) {
-        // Add any business logic/validation here before saving
         return orderRepository.save(order);
     }
 
@@ -37,11 +36,9 @@ public class OrdersService {
             Orders existingOrder = optionalOrder.get();
             existingOrder.setDate(newOrder.getDate());
             existingOrder.setCustomer(newOrder.getCustomer());
-            // Add any other fields to update as needed
             return orderRepository.save(existingOrder);
         } else {
-            // Handle order not found
-            return null; // Or throw an exception
+            return null;
         }
     }
 

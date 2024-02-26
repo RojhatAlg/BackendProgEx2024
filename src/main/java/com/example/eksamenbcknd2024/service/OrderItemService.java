@@ -27,7 +27,6 @@ public class OrderItemService {
     }
 
     public OrderItem saveOrderItem(OrderItem orderItem) {
-        // Add any business logic/validation here before saving
         return orderItemRepository.save(orderItem);
     }
 
@@ -37,11 +36,9 @@ public class OrderItemService {
             OrderItem existingOrderItem = optionalOrderItem.get();
             existingOrderItem.setOrder(newOrderItem.getOrder());
             existingOrderItem.setItem(newOrderItem.getItem());
-            // Add any other fields to update as needed
             return orderItemRepository.save(existingOrderItem);
         } else {
-            // Handle order item not found
-            return null; // Or throw an exception
+            return null;
         }
     }
 

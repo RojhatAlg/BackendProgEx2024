@@ -9,12 +9,10 @@ import com.example.eksamenbcknd2024.repository.OrderItemRepository;
 import com.example.eksamenbcknd2024.repository.OrdersRepository;
 import com.example.eksamenbcknd2024.request.OrderItemCreateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController

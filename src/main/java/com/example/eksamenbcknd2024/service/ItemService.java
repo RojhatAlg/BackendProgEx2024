@@ -27,7 +27,6 @@ public class ItemService {
     }
 
     public Item saveItem(Item item) {
-        // Add any business logic/validation here before saving
         return itemRepository.save(item);
     }
 
@@ -38,10 +37,8 @@ public class ItemService {
             existingItem.setName(newItem.getName());
             existingItem.setPrice(newItem.getPrice());
             existingItem.setProductId(newItem.getProductId());
-            // Add any other fields to update as needed
             return itemRepository.save(existingItem);
         } else {
-            // Handle item not found
             return null; // Or throw an exception
         }
     }

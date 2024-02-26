@@ -27,7 +27,6 @@ public class AddressService {
     }
 
     public Address saveAddress(Address address) {
-        // Add any business logic/validation here before saving
         return addressRepository.save(address);
     }
 
